@@ -37,13 +37,21 @@ RUN pip install MySQL-python
 RUN pip install flask_bootstrap
 RUN pip install flask_wtf
 RUN pip install wtforms
+<<<<<<< HEAD
 RUN pip install flask
 RUN chmod 777 $DOCKYARD_SRCPROJ/start_server.sh
 
+=======
+RUn pip install flask
+>>>>>>> origin/master
 
 # Port to expose 
 EXPOSE 5000
 
 # Copy entrypoint script into the image 
 WORKDIR $DOCKYARD_SRCPROJ 
+<<<<<<< HEAD
 ENTRYPOINT ["/bin/bash"]
+=======
+ENTRYPOINT ["./start_server.sh"]
+>>>>>>> origin/master
