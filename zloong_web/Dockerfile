@@ -46,4 +46,4 @@ EXPOSE 5000
 
 # Copy entrypoint script into the image 
 WORKDIR $DOCKYARD_SRCPROJ 
-ENTRYPOINT ["./start_server.sh"]
+ENTRYPOINT ["/bin/bash"]
