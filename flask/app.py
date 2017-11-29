@@ -16,6 +16,9 @@ bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = 'helloasldjasldjoasidjoijfoiadsjfhas'
 app.config.from_object(__name__)
+app.config['BOOTSTRAP_SERVE_LOCAL'] = True
+
+
 
 
 class contentForm(FlaskForm):
@@ -93,4 +96,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5000,debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

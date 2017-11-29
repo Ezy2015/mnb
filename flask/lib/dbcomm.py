@@ -46,7 +46,7 @@ def db_update(db_tablename, name, data):
     conn.close()
 
 if __name__ == "__main__":
-    r = db_select(db_payload, 'crossdomain_config_improper')
+    r = db_select('payload', 'crossdomain_config_improper')
     print type(r)
     print r
     print json.loads(r)
