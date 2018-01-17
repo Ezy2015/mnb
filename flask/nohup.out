@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "app.py", line 8, in <module>
+    from lib.dbcomm import *
+  File "/root/tool/zloong/docker/zloong_web/flask/lib/dbcomm.py", line 5, in <module>
+    from config import *
+ImportError: No module named config

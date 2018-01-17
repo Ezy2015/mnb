@@ -1,4 +1,3 @@
-
 #coding:utf-8
 from flask import Flask, request, render_template, redirect, url_for, session, make_response
 from flask_bootstrap import Bootstrap
@@ -7,7 +6,7 @@ from wtforms import StringField, SubmitField, TextAreaField, TextField
 from wtforms.validators import Required
 from lib.dbcomm import *
 import json
-
+import re
 
 
 app = Flask(__name__)
@@ -43,7 +42,7 @@ class NameForm(FlaskForm):
 
 
 
-@app.route('/201703070001', methods=['GET', 'POST'])  
+@app.route('/e0df5f3dfd2650ae5be9993434e2b2c0/', methods=['GET'])  
 def index():  
     form = NameForm()  
     #如果提交的数据验证通过，则返回True  
@@ -54,10 +53,9 @@ def index():
 
 
 
-@app.route('/insert/', methods=['GET', 'POST']) 
+@app.route('/e0df5f3dfd2650ae5be9993434e2b2c0/', methods=['POST']) 
 def insert():
     form = NameForm()
-    id = request.form['id']
     name = request.form['name']
     info = request.form['info']
     level = request.form['level']
@@ -65,7 +63,20 @@ def insert():
     data = request.form['data']
     
 
-    j = json.loads(data.replace('\\','\\\\').replace('\\\\"', '\\\\\\"'))
+
+    r = "^\w+$"
+    try:
+        n = re.search(r, name).group()
+        i = re.search(r, info).group()
+        l = re.search(r, level).group()
+        t = re.search(r, type).group()
+    except:
+        render_template('insert.html', form=form)
+    
+    try:
+        j = json.loads(data.replace('\\','\\\\').replace('\\\\"', '\\\\\\"'))
+    except:
+        render_template('insert.html', form=form)
 
 
     if info.strip() == "":
@@ -73,25 +84,6 @@ def insert():
     else:
         db_insert(db_payload, name, info, level, type, json.dumps(j))
     return render_template('insert.html', form=form)
-
-
-
-
-
-'''
-@app.route('/')
-def index():
-    name = 'Ezy'
-    return render_template('template2.html', name=name)
-
-
-
-
-@app.route('/', methods=['GET'])
-def index():
-    form = contentForm()
-    return render_template('template2.html', form=form)
-'''
 
 
 
